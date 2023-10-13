@@ -26,6 +26,6 @@ app.use(errorHandler)
 const port = process.env.PORT || 3000;
 connectDB().then(() => {
     app.listen(port, () => {
-        console.log("listening for requests");
+        console.log(`server is running on port ${port}`);
     })
 })
