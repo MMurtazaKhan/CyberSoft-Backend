@@ -23,7 +23,7 @@ app.use(notFound)
 app.use(errorHandler)
 
 // Start the server
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 connectDB().then(() => {
     app.listen(port, () => {
         console.log(`server is running on port ${port}`);
