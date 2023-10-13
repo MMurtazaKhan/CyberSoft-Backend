@@ -44,4 +44,18 @@ const registerUser = asyncHandler(async (req, res) => {
       }
   })
 
-  export {registerUser, authUser}
+    const getAllUsers = asyncHandler(async (req, res) => {
+      
+      const users = await User.find()
+  
+      if(users){
+        res.status(200)
+        res.json({users})
+      }
+      else {
+          res.status(401)
+          throw new Error("Invalid email or Password")
+      }
+  })
+
+  export {registerUser, authUser, getAllUsers}
