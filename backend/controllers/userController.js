@@ -47,8 +47,6 @@ const sendOTP = asyncHandler(async (req, res) => {
         // Create a new user document with mobileNumber and temporary flag
         const newUser = new User({ name, email, mobileNumber, password, isVerified: false });
 
-        // Save the new user to the database
-        const savedUser = await newUser.save();
 
         // Send an OTP via Twilio
         const verification = await client.verify.services(process.env.TWILIO_SERVICE_ID).verifications.create({
@@ -66,6 +64,9 @@ const sendOTP = asyncHandler(async (req, res) => {
                 error: 'Failed to send OTP',
             });
         }
+        
+        // Save the new user to the database
+        const savedUser = await newUser.save();
     } catch (error) {
         res.status(500).json({
             error: error.message,
